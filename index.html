@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+    
+        <script>
+            let playerPoints = 0;
+            let computerPoints = 0;
+            let round = 0;
+             let declareWinner = function(winner,loser) {
+               playerPoints += 1
+                return("You win!, " + winner + " beats " + loser); 
+             };
+             let declareLoser = function(winner,loser) {
+                 computerPoints+= 1;
+                return("You lose!, " + winner + " beats " + loser ); 
+             }
+            function computerPlay() {
+                let randomNumber = Math.random();
+                if(randomNumber <= 0.33) {
+                    return "rock";
+                } else if(randomNumber <= 0.66) {
+                    return "scissors";
+                } else if(randomNumber <= 1)  {
+                    return "paper";
+                }
+             
+            }
+           
+            function playRound(playerSelection,computerSelection) {
+                playerSelection = playerSelection.toLowerCase();
+                if((playerSelection == "rock" && computerSelection == "scissors") ||
+                (playerSelection =="paper" && computerSelection == "rock") ||
+                (playerSelection == "scissors" && computerSelection == "paper")) {   
+
+                    console.log(declareWinner(playerSelection,computerSelection));
+
+                }
+                 else if((playerSelection == "rock" && computerSelection == "paper") ||
+                (playerSelection =="paper" && computerSelection == "scissors") ||
+                (playerSelection == "scissors" && computerSelection == "rock")){
+
+                    console.log(declareLoser(playerSelection,computerSelection));
+
+                }
+                else if(playerSelection == computerSelection) {
+
+                    console.log("It's a tie!");
+                }   
+                   
+                    console.log("Player Points: " + playerPoints + " Computer Points: " + computerPoints);
+                }
+            function game() {
+               
+               if(round <= 5) {
+                let playerSelection = prompt("rock paper or scissors?");
+               let computerSelection = computerPlay();
+                playRound(playerSelection,computerSelection);
+                ++round;
+                game();
+               }           
+               if(playerPoints > computerPoints) {
+                   console.log("You win!");
+               } else if(playerPoints == computerPoints) {
+                   console.log("It's a tie!");
+                   }else {
+                   console.log("You lose!");
+               }
+
+            }
+            game();
+            
+            
+            
+        
+        </script>
+    </body>
+</html>
